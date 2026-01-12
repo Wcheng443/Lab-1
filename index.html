@@ -547,4 +547,15 @@ $(document).ready(function(){
       $("article p, aside p, footer p, nav a").css("color","rgba(229,231,235,.90)");
       $("nav a span").css("color","rgba(229,231,235,.65)");
       $("article h1, aside h4, footer a").css("color","#a7f3d0");
-      $("#themeBtn").text("Theme
+      $("#themeBtn").text("Theme: Dark");
+    } else {
+      $("body, header, nav, article, aside, footer, article p, aside p, footer p, nav a, nav a span, article h1, aside h4, footer a").removeAttr("style");
+      $("#themeBtn").text("Theme");
+    }
+  });
+
+});
+</script>
+
+</body>
+</html>
