@@ -3,200 +3,392 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="Description" content="Habitat for Humanity – Interactive Page"/>
-<link rel="shortcut icon" href="http://www.habitat.org/sites/default/files/favicon.ico"/>
-
-<title>Habitat for Humanity</title>
+<meta name="Description" content="Sample Web site for learning HTML5 and CSS3"/>
+<link rel="shortcut icon" href="http://www.habitat.org/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon" />
+<title>Habitat for Humanity Int&#039;l</title>
 
 <style>
-body{
-  margin:0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg,#e8f5e9,#f1f8e9);
-  color:#1b1b1b;
-}
+  :root{
+    --bg1:#eafff2;
+    --bg2:#f7fff0;
+    --card:#ffffff;
+    --text:#0f172a;
+    --muted:#475569;
+    --line:#e2e8f0;
+    --brand:#2e7d32;
+    --brand2:#1b5e20;
+    --accent:#22c55e;
+    --shadow: 0 10px 22px rgba(2,6,23,.10);
+    --r:18px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--text);
+    background: radial-gradient(900px 450px at 10% 0%, rgba(34,197,94,.16), transparent 60%),
+                radial-gradient(900px 450px at 90% 10%, rgba(46,125,50,.12), transparent 60%),
+                linear-gradient(135deg, var(--bg1), var(--bg2));
+    line-height:1.55;
+  }
 
-/* HEADER */
-header{
-  background: linear-gradient(90deg,#1b5e20,#43a047);
-  padding:25px;
-  text-align:center;
-}
+  /* Top bar */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(226,232,240,.9);
+  }
+  .topbar{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10px 14px;           /* reduced empty space */
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  header img{
+    width: 210px;
+    height:auto;
+    display:block;
+    cursor:pointer;
+    user-select:none;
+  }
+  .top-actions{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  .btn{
+    border: 1px solid rgba(15,23,42,.12);
+    background: rgba(255,255,255,.8);
+    border-radius: 999px;
+    padding: 9px 12px;
+    font-weight: 750;
+    cursor:pointer;
+    box-shadow: 0 8px 18px rgba(2,6,23,.08);
+  }
+  .btn:active{ transform: translateY(1px); }
+  .pill{
+    display:none; /* shown by jQuery for “Saved” feedback */
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-weight: 800;
+    border: 1px solid rgba(34,197,94,.25);
+    background: rgba(34,197,94,.10);
+    color: #166534;
+    white-space:nowrap;
+  }
 
-header img{
-  width:240px;
-  cursor:pointer;
-}
+  /* Layout */
+  .wrap{
+    max-width:1100px;
+    margin: 0 auto;
+    padding: 12px 14px 18px;      /* reduced empty space */
+    display:grid;
+    grid-template-columns: 290px 1fr;
+    gap: 12px;                    /* reduced empty space */
+    align-items:start;
+  }
 
-/* NAV */
-nav{
-  background:#ffffff;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.15);
-}
+  /* Nav card */
+  nav{
+    background: rgba(255,255,255,.92);
+    border:1px solid rgba(226,232,240,.95);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    position: sticky;
+    top: 68px;
+  }
+  .navHead{
+    padding: 12px 12px 10px;
+    border-bottom:1px solid rgba(226,232,240,.95);
+    background: linear-gradient(180deg, rgba(46,125,50,.10), transparent);
+  }
+  nav h4{
+    margin:0;
+    font-size: 12px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 900;
+  }
+  nav ul{
+    list-style:none;
+    margin:0;
+    padding: 10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  nav a{
+    text-decoration:none;
+    color: var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 11px 11px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    font-weight: 800;
+  }
+  nav a span{ color: rgba(71,85,105,.85); font-weight: 900; }
+  nav a:hover{
+    transform: translateY(-1px);
+    background: rgba(34,197,94,.10);
+    border-color: rgba(34,197,94,.18);
+  }
+  nav a.active{
+    background: rgba(46,125,50,.12);
+    border-color: rgba(46,125,50,.22);
+  }
 
-nav ul{
-  list-style:none;
-  padding:0;
-  margin:0;
-}
+  /* Content */
+  .content{
+    display:flex;
+    flex-direction:column;
+    gap: 12px;                    /* reduced empty space */
+  }
 
-nav li{
-  display:inline-block;
-  margin:10px 15px;
-}
+  article, aside{
+    background: rgba(255,255,255,.92);
+    border:1px solid rgba(226,232,240,.95);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    padding: 14px;                /* reduced empty space */
+  }
 
-nav a{
-  text-decoration:none;
-  font-weight:700;
-  color:#2e7d32;
-  font-size:18px;
-}
+  article h1{
+    margin:0 0 8px 0;
+    font-size: 20px;
+    letter-spacing: .2px;
+    color: var(--brand2);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .hint{
+    font-size:12px;
+    font-weight:900;
+    color: rgba(71,85,105,.85);
+    border:1px solid rgba(71,85,105,.18);
+    padding: 4px 8px;
+    border-radius: 999px;
+    white-space:nowrap;
+  }
 
-/* LAYOUT */
-main{
-  max-width:1100px;
-  margin:40px auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:25px;
-}
+  article p{ margin:0; color:#0f172a; }
+  .lead{ color: rgba(15,23,42,.86); }
 
-/* CARDS */
-article, aside{
-  background:white;
-  padding:25px;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
+  .mediaRow{
+    margin-top:10px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .chip{
+    border: 1px solid rgba(15,23,42,.12);
+    background: rgba(255,255,255,.8);
+    border-radius: 999px;
+    padding: 8px 10px;
+    font-weight: 900;
+    cursor:pointer;
+  }
 
-article h1{
-  color:#2e7d32;
-  cursor:pointer;
-}
+  .missionImg{
+    margin-top:10px;
+    border-radius: 14px;
+    display:block;
+    max-width: 360px;
+    width: 100%;
+    height:auto;
+    cursor:pointer;
+    border:1px solid rgba(226,232,240,.95);
+  }
 
-article img{
-  width:100%;
-  max-width:350px;
-  margin-top:15px;
-  cursor:pointer;
-}
+  .mediaBox{
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(226,232,240,.95);
+    background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(255,255,255,.7));
+    display:none; /* jQuery toggles */
+  }
+  .mediaBox strong{ display:block; margin-bottom: 6px; color: var(--brand2); }
 
-/* MEDIA */
-.media-box{
-  margin-top:20px;
-  padding:15px;
-  background:#f1f8e9;
-  border-radius:14px;
-}
+  aside h4{
+    margin:0 0 8px 0;
+    font-size:16px;
+    color: var(--brand2);
+  }
+  aside img{
+    width:100%;
+    border-radius:14px;
+    display:block;
+    cursor:pointer;
+    border:1px solid rgba(226,232,240,.95);
+  }
+  aside p{ margin:10px 0 0 0; color: rgba(15,23,42,.86); }
+  aside a{ color: var(--brand2); font-weight: 900; text-decoration:none; }
+  aside a:hover{ text-decoration:underline; }
 
-/* ASIDE */
-aside img{
-  width:100%;
-  border-radius:14px;
-  cursor:pointer;
-}
+  footer{
+    max-width:1100px;
+    margin: 10px auto 16px;
+    padding: 14px;
+    border-radius: var(--r);
+    border:1px solid rgba(226,232,240,.95);
+    background: rgba(255,255,255,.72);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+  }
+  footer a{
+    color: var(--brand2);
+    font-weight: 900;
+    text-decoration:none;
+  }
+  footer a:hover{ text-decoration:underline; }
+  footer p{
+    margin:10px 0 0 0;
+    color: rgba(71,85,105,.92);
+    font-size: 12.5px;
+  }
 
-aside a{
-  font-weight:700;
-  color:#1b5e20;
-  text-decoration:none;
-}
-
-/* FOOTER */
-footer{
-  background:#1b5e20;
-  color:white;
-  padding:30px;
-  text-align:center;
-  margin-top:50px;
-}
-
-footer a{
-  color:#c8e6c9;
-  font-weight:700;
-  text-decoration:none;
-  margin:0 8px;
-}
+  /* Responsive */
+  @media (max-width: 900px){
+    .wrap{ grid-template-columns: 1fr; }
+    nav{ position:relative; top:auto; }
+    header img{ width: 190px; }
+  }
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="media/logo.png" alt="Habitat for Humanity logo">
+  <div class="topbar">
+    <img id="logo" src="media/logo.png" alt="Habitat for Humanity logo" />
+    <div class="top-actions">
+      <button class="btn" id="themeBtn" type="button">Theme</button>
+      <button class="btn" id="compactBtn" type="button">Compact</button>
+      <span class="pill" id="savedPill">Saved ✓</span>
+    </div>
+  </div>
 </header>
 
-<nav>
-  <ul>
-    <li><a href="#">Learn More</a></li>
-    <li><a href="#">Volunteer</a></li>
-    <li><a href="#">Advocate</a></li>
-    <li><a href="#">Donate</a></li>
-  </ul>
-</nav>
+<div class="wrap">
 
-<main>
+  <nav>
+    <div class="navHead">
+      <h4>Simple, decent, affordable housing</h4>
+    </div>
+    <ul>
+      <!-- REAL working links + smooth scroll (jQuery intercepts same-page links) -->
+      <li><a class="navlink" href="#mission">Our Mission <span>↳</span></a></li>
+      <li><a class="navlink" href="#why">Why We Build <span>↳</span></a></li>
+      <li><a class="navlink" href="#advocacy">Advocacy <span>↳</span></a></li>
 
-<section>
+      <!-- External links (real Habitat URLs) -->
+      <li><a class="ext" href="http://www.habitat.org/how/about_us.aspx" target="_blank" rel="noopener">Learn more <span>↗</span></a></li>
+      <li><a class="ext" href="http://www.habitat.org/getinv/volunteer_programs.aspx" target="_blank" rel="noopener">Volunteer <span>↗</span></a></li>
+      <li><a class="ext" href="http://www.habitat.org/gov" target="_blank" rel="noopener">Advocate <span>↗</span></a></li>
+      <li><a class="ext" href="https://www.habitat.org/cd/giving/donate.aspx?r=r&amp;link=1" target="_blank" rel="noopener">Donate <span>↗</span></a></li>
+    </ul>
+  </nav>
 
-<article>
-  <h1>Our Mission</h1>
-  <p>
-    Habitat for Humanity believes that every man, woman and child should have
-    a decent, safe and affordable place to live. We build and repair houses
-    using volunteer labor and donations.
-  </p>
-  <img src="media/menu_icon_default.jpg" alt="Habitat workers">
-</article>
+  <div class="content">
 
-<article>
-  <h1>Why We Build</h1>
-  <p>
-    Nearly 2 billion people live in poor housing conditions worldwide.
-    Habitat provides shelter and housing assistance to families in need.
-  </p>
+    <article id="mission">
+      <h1>Our Mission <span class="hint">click title</span></h1>
+      <p class="lead">
+        Habitat for Humanity believes that every man, woman and child should have a decent, safe and affordable place to live.
+        We build and repair houses all over the world using volunteer labor and donations. Our partner families purchase these
+        houses through no-profit, no-interest mortgage loans or innovative financing methods.
+      </p>
 
-  <div class="media-box">
-    <strong>Hear a volunteer story:</strong><br><br>
-    <audio controls src="media/habitat_audio.mp3"></audio>
+      <div class="mediaRow">
+        <button class="chip" id="pulseBtn" type="button">Pulse card</button>
+        <button class="chip" id="colorBtn" type="button">Switch colors</button>
+        <button class="chip" id="imgBorderBtn" type="button">Image glow</button>
+      </div>
+
+      <img class="missionImg" id="missionImg" src="media/menu_icon_default.jpg" width="212" height="121" alt="Silhouettes of Habitat for Humanity workers" />
+      <p style="margin-top:8px;color:rgba(71,85,105,.92);font-size:12.5px;">
+        Tip: click the image to fade, double-click to reset.
+      </p>
+    </article>
+
+    <article id="why">
+      <h1>Why We Build <span class="hint">click title</span></h1>
+      <p class="lead">
+        There are nearly 2 billion people around the world who live in slum housing and more than 100 million are homeless.
+        Families left homeless by natural disasters, war and civil unrest often face dire housing situations as they struggle
+        to rebuild their lives. We provide shelter and housing assistance to help these families recover.
+      </p>
+
+      <div class="mediaRow">
+        <button class="chip" id="audioToggle" type="button">Toggle audio</button>
+        <button class="chip" id="audioColor" type="button">Audio highlight</button>
+      </div>
+
+      <div class="mediaBox" id="audioBox">
+        <strong>Volunteer audio (asset)</strong>
+        <audio controls src="media/habitat_audio.mp3"></audio>
+      </div>
+    </article>
+
+    <article id="advocacy">
+      <h1>Advocacy in Action <span class="hint">click title</span></h1>
+      <p class="lead">
+        Volunteer Amy Miles lends her voice in support of Habitat's advocacy efforts and Global Village trips.
+        Use the controls below to explore Habitat media.
+      </p>
+
+      <div class="mediaRow">
+        <button class="chip" id="videoToggle" type="button">Toggle video</button>
+        <button class="chip" id="videoWide" type="button">Wider video</button>
+      </div>
+
+      <div class="mediaBox" id="videoBox">
+        <strong>Habitat video (asset)</strong>
+        <video id="vid" controls width="100%" src="media/habitat_video_Web_720.mp4"></video>
+      </div>
+    </article>
+
+    <aside id="youth">
+      <h4>Build Your Community</h4>
+      <a href="http://www.habitat.org/youthprograms/ages_14_25/ages_14_25_default.aspx" target="_blank" rel="noopener">
+        <img id="youthImg" src="media/YP3_14to25.jpg" alt="Habitat Youth Programs"/>
+      </a>
+      <p>
+        <a href="http://www.habitat.org/youthprograms/ages_14_25/ages_14_25_default.aspx" target="_blank" rel="noopener">Start today</a>
+        to become the leaders of Habitat tomorrow!
+      </p>
+      <div class="mediaRow">
+        <button class="chip" id="asideTilt" type="button">Tilt effect</button>
+        <button class="chip" id="asideSwap" type="button">Swap style</button>
+      </div>
+    </aside>
+
   </div>
-</article>
-
-<article>
-  <h1>Advocacy in Action</h1>
-  <p>
-    Habitat volunteers advocate for affordable housing and community support.
-  </p>
-
-  <div class="media-box">
-    <strong>Watch Habitat in action:</strong><br><br>
-    <video controls width="100%" src="media/habitat_video_Web_720.mp4"></video>
-  </div>
-</article>
-
-</section>
-
-<aside>
-  <h2>Build Your Community</h2>
-  <img src="media/YP3_14to25.jpg" alt="Youth Programs">
-  <p>
-    <a href="#">Start today</a> and become the leaders of Habitat tomorrow.
-  </p>
-</aside>
-
-</main>
+</div>
 
 <footer>
-  <a href="#">Learn About Habitat</a> |
-  <a href="#">Where We Build</a> |
-  <a href="#">Support Habitat</a> |
-  <a href="#">Stories</a>
-
+  <a href="http://www.habitat.org/how/" target="_blank" rel="noopener">Learn About Habitat</a> |
+  <a href="http://www.habitat.org/intl/" target="_blank" rel="noopener">Where We Build</a> |
+  <a href="http://www.habitat.org/support/default.aspx" target="_blank" rel="noopener">Support Habitat</a> |
+  <a href="http://www.habitat.org/stories_multimedia/" target="_blank" rel="noopener">Stories and Multimedia</a>
   <p>
-    ©2014 Habitat for Humanity® International. All rights reserved.
+    &#169;2014 Habitat for Humanity&#174; International. All rights reserved. "Habitat for Humanity&#174;" is a registered service mark
+    owned by Habitat for Humanity International. Habitat&#174; is a service mark of Habitat for Humanity International.
   </p>
 </footer>
 
@@ -206,28 +398,142 @@ footer a{
 <script>
 $(document).ready(function(){
 
-  // Click logo to hide/show nav
-  $("header img").click(function(){
-    $("nav").slideToggle("slow");
+  /* ========= 1) FIX LINKS + smooth scroll (more jQuery) ========= */
+  // Smooth-scroll ONLY for same-page anchor links (external links still work normally)
+  $("a[href^='#']").on("click", function(e){
+    const target = $(this).attr("href");
+    if(target.length > 1 && $(target).length){
+      e.preventDefault();
+      $("html, body").animate({ scrollTop: $(target).offset().top - 72 }, 350);
+    }
   });
 
-  // Toggle article text + style using jQuery CSS
-  $("article h1").click(function(){
-    $(this).next("p").slideToggle(200);
-    $(this).css("color","#1b5e20");
+  /* ========= 2) Nav active state while scrolling ========= */
+  const sections = ["#mission", "#why", "#advocacy", "#youth"];
+  function setActive(){
+    let best = null;
+    let bestDist = Infinity;
+    const top = $(window).scrollTop() + 90;
+
+    sections.forEach(function(id){
+      if($(id).length){
+        const dist = Math.abs($(id).offset().top - top);
+        if(dist < bestDist){ bestDist = dist; best = id; }
+      }
+    });
+
+    if(best){
+      $(".navlink").removeClass("active");
+      $(".navlink[href='"+best+"']").addClass("active");
+    }
+  }
+  setActive();
+  $(window).on("scroll", setActive);
+
+  /* ========= 3) Click logo toggles nav + adds a quick style pop ========= */
+  $("#logo").on("click", function(){
+    $("nav").slideToggle(220);
+    // quick pop effect on header via jQuery CSS
+    $("header").css("box-shadow","0 12px 28px rgba(2,6,23,.12)");
+    setTimeout(function(){ $("header").css("box-shadow","none"); }, 350);
   });
 
-  // Fade mission image
-  $("article img").click(function(){
-    $(this).fadeToggle(300);
+  /* ========= 4) Article title toggles paragraph + changes CSS (more jQuery) ========= */
+  $("article h1").on("click", function(){
+    const $card = $(this).closest("article");
+    $(this).next("p").slideToggle(180);
+
+    $card.css({
+      "border-color":"rgba(34,197,94,.28)",
+      "box-shadow":"0 16px 30px rgba(34,197,94,.14)"
+    });
+
+    setTimeout(function(){
+      $card.css({
+        "border-color":"rgba(226,232,240,.95)",
+        "box-shadow":"0 10px 22px rgba(2,6,23,.10)"
+      });
+    }, 450);
   });
 
-  // Hover effect on aside image using jQuery CSS
-  $("aside img").hover(
+  /* ========= 5) Mission image fade + reset + CSS glow ========= */
+  $("#missionImg").on("click", function(){
+    $(this).fadeToggle(220);
+  });
+  $("#missionImg").on("dblclick", function(){
+    $(this).stop(true,true).show().css({
+      "box-shadow":"none",
+      "transform":"scale(1)",
+      "border-color":"rgba(226,232,240,.95)"
+    });
+  });
+
+  $("#imgBorderBtn").on("click", function(){
+    $("#missionImg").css({
+      "box-shadow":"0 18px 36px rgba(34,197,94,.22)",
+      "border-color":"rgba(34,197,94,.30)"
+    }).animate({ opacity: 0.95 }, 120).animate({ opacity: 1 }, 120);
+  });
+
+  /* ========= 6) Extra jQuery buttons (more interactivity) ========= */
+  $("#pulseBtn").on("click", function(){
+    const $m = $("#mission");
+    $m.animate({ paddingTop: "18px" }, 120)
+      .animate({ paddingTop: "14px" }, 120);
+  });
+
+  let altColors = false;
+  $("#colorBtn").on("click", function(){
+    altColors = !altColors;
+    if(altColors){
+      $("body").css("background",
+        "radial-gradient(900px 450px at 20% 0%, rgba(59,130,246,.14), transparent 60%),"+
+        "radial-gradient(900px 450px at 85% 10%, rgba(168,85,247,.12), transparent 60%),"+
+        "linear-gradient(135deg, #eef2ff, #faf5ff)"
+      );
+      $("article h1, aside h4, footer a").css("color", "#0f172a");
+      $(".navHead").css("background","linear-gradient(180deg, rgba(59,130,246,.14), transparent)");
+    } else {
+      $("body").removeAttr("style");
+      $("article h1, aside h4, footer a").removeAttr("style");
+      $(".navHead").removeAttr("style");
+    }
+  });
+
+  /* ========= 7) Toggle audio/video panels (assets) ========= */
+  $("#audioToggle").on("click", function(){
+    $("#audioBox").slideToggle(200);
+  });
+  $("#audioColor").on("click", function(){
+    $("#audioBox").css({
+      "background":"linear-gradient(180deg, rgba(34,197,94,.12), rgba(255,255,255,.75))",
+      "border-color":"rgba(34,197,94,.25)"
+    });
+  });
+
+  $("#videoToggle").on("click", function(){
+    $("#videoBox").slideToggle(200);
+  });
+
+  let wide = false;
+  $("#videoWide").on("click", function(){
+    wide = !wide;
+    if(wide){
+      $("#videoBox").css({"padding":"12px"});
+      $("#vid").css({"border-radius":"14px"});
+      $("#advocacy").css({"border-color":"rgba(34,197,94,.30)"});
+    } else {
+      $("#videoBox, #vid, #advocacy").removeAttr("style");
+    }
+  });
+
+  /* ========= 8) Aside hover CSS via jQuery ========= */
+  $("#youthImg").hover(
     function(){
       $(this).css({
-        "transform":"scale(1.05)",
-        "box-shadow":"0 15px 30px rgba(0,0,0,.25)"
+        "transform":"scale(1.03)",
+        "box-shadow":"0 18px 36px rgba(2,6,23,.18)",
+        "transition":"transform .18s ease"
       });
     },
     function(){
@@ -237,6 +543,92 @@ $(document).ready(function(){
       });
     }
   );
+
+  let tilted = false;
+  $("#asideTilt").on("click", function(){
+    tilted = !tilted;
+    if(tilted){
+      $("#youthImg").css({"transform":"rotate(-1.5deg) scale(1.02)"});
+    } else {
+      $("#youthImg").css({"transform":"scale(1)"});
+    }
+  });
+
+  let asideAlt = false;
+  $("#asideSwap").on("click", function(){
+    asideAlt = !asideAlt;
+    if(asideAlt){
+      $("#youth").css({
+        "background":"linear-gradient(135deg, rgba(34,197,94,.10), rgba(255,255,255,.92))",
+        "border-color":"rgba(34,197,94,.25)"
+      });
+    } else {
+      $("#youth").removeAttr("style");
+    }
+  });
+
+  /* ========= 9) Theme button (jQuery does lots of CSS) ========= */
+  let theme = 0; // 0 default, 1 dark, 2 neon
+  $("#themeBtn").on("click", function(){
+    theme = (theme + 1) % 3;
+
+    if(theme === 1){
+      // Dark
+      $("body").css({
+        "background":"radial-gradient(900px 450px at 10% 0%, rgba(34,197,94,.12), transparent 60%),"+
+                     "radial-gradient(900px 450px at 90% 10%, rgba(46,125,50,.10), transparent 60%),"+
+                     "linear-gradient(135deg, #081018, #0b1220)",
+        "color":"#e5e7eb"
+      });
+      $("header, nav, article, aside, footer").css({
+        "background":"rgba(15,23,42,.78)",
+        "border-color":"rgba(255,255,255,.10)"
+      });
+      $("article p, aside p, footer p, nav a").css("color","rgba(229,231,235,.90)");
+      $("nav a span").css("color","rgba(229,231,235,.65)");
+      $("article h1, aside h4, footer a").css("color","#a7f3d0");
+      $("#themeBtn").text("Theme: Dark");
+    } else if(theme === 2){
+      // Neon-ish
+      $("body").css({
+        "background":"radial-gradient(900px 450px at 15% 0%, rgba(59,130,246,.18), transparent 60%),"+
+                     "radial-gradient(900px 450px at 90% 10%, rgba(168,85,247,.16), transparent 60%),"+
+                     "linear-gradient(135deg, #ecfeff, #fff7ed)"
+      });
+      $("header, nav, article, aside, footer").css({
+        "background":"rgba(255,255,255,.86)",
+        "border-color":"rgba(2,6,23,.10)"
+      });
+      $("article h1, aside h4, footer a").css("color","#111827");
+      $("#themeBtn").text("Theme: Pop");
+    } else {
+      // Reset to CSS defaults
+      $("body, header, nav, article, aside, footer, article p, aside p, footer p, nav a, nav a span, article h1, aside h4, footer a").removeAttr("style");
+      $("#themeBtn").text("Theme");
+    }
+
+    // little “saved” feedback
+    $("#savedPill").stop(true,true).fadeIn(120).delay(650).fadeOut(200);
+  });
+
+  /* ========= 10) Compact button removes “empty space” via jQuery ========= */
+  let compact = false;
+  $("#compactBtn").on("click", function(){
+    compact = !compact;
+
+    if(compact){
+      $(".wrap").css({"gap":"8px"});
+      $(".content").css({"gap":"8px"});
+      $("article, aside").css({"padding":"11px"});
+      $(".topbar").css({"padding":"8px 12px"});
+      $("#compactBtn").text("Spaced");
+    } else {
+      $(".wrap, .content, article, aside, .topbar").removeAttr("style");
+      $("#compactBtn").text("Compact");
+    }
+
+    $("#savedPill").stop(true,true).fadeIn(120).delay(650).fadeOut(200);
+  });
 
 });
 </script>
