@@ -4,7 +4,11 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="Description" content="Sample Web site for learning HTML5 and CSS3"/>
-<link rel="shortcut icon" href="http://www.habitat.org/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon" />
+
+<!-- FIXED favicon: use HTTPS + standard rel="icon" -->
+<link rel="icon" href="https://www.habitat.org/sites/default/files/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://www.habitat.org/sites/default/files/favicon.ico" type="image/x-icon">
+
 <title>Habitat for Humanity Int&#039;l</title>
 
 <style>
@@ -17,7 +21,6 @@
     --line:#e2e8f0;
     --brand:#2e7d32;
     --brand2:#1b5e20;
-    --accent:#22c55e;
     --shadow: 0 10px 22px rgba(2,6,23,.10);
     --r:18px;
   }
@@ -32,7 +35,6 @@
     line-height:1.55;
   }
 
-  /* Top bar */
   header{
     position: sticky;
     top: 0;
@@ -44,7 +46,7 @@
   .topbar{
     max-width: 1100px;
     margin: 0 auto;
-    padding: 10px 14px;           /* reduced empty space */
+    padding: 10px 14px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -73,7 +75,7 @@
   }
   .btn:active{ transform: translateY(1px); }
   .pill{
-    display:none; /* shown by jQuery for “Saved” feedback */
+    display:none;
     padding: 7px 10px;
     border-radius: 999px;
     font-weight: 800;
@@ -83,18 +85,16 @@
     white-space:nowrap;
   }
 
-  /* Layout */
   .wrap{
     max-width:1100px;
     margin: 0 auto;
-    padding: 12px 14px 18px;      /* reduced empty space */
+    padding: 12px 14px 18px;
     display:grid;
     grid-template-columns: 290px 1fr;
-    gap: 12px;                    /* reduced empty space */
+    gap: 12px;
     align-items:start;
   }
 
-  /* Nav card */
   nav{
     background: rgba(255,255,255,.92);
     border:1px solid rgba(226,232,240,.95);
@@ -148,11 +148,10 @@
     border-color: rgba(46,125,50,.22);
   }
 
-  /* Content */
   .content{
     display:flex;
     flex-direction:column;
-    gap: 12px;                    /* reduced empty space */
+    gap: 12px;
   }
 
   article, aside{
@@ -160,7 +159,7 @@
     border:1px solid rgba(226,232,240,.95);
     border-radius: var(--r);
     box-shadow: var(--shadow);
-    padding: 14px;                /* reduced empty space */
+    padding: 14px;
   }
 
   article h1{
@@ -220,7 +219,7 @@
     border-radius: 14px;
     border: 1px solid rgba(226,232,240,.95);
     background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(255,255,255,.7));
-    display:none; /* jQuery toggles */
+    display:none; /* toggled by jQuery */
   }
   .mediaBox strong{ display:block; margin-bottom: 6px; color: var(--brand2); }
 
@@ -262,7 +261,6 @@
     font-size: 12.5px;
   }
 
-  /* Responsive */
   @media (max-width: 900px){
     .wrap{ grid-template-columns: 1fr; }
     nav{ position:relative; top:auto; }
@@ -291,12 +289,10 @@
       <h4>Simple, decent, affordable housing</h4>
     </div>
     <ul>
-      <!-- REAL working links + smooth scroll (jQuery intercepts same-page links) -->
       <li><a class="navlink" href="#mission">Our Mission <span>↳</span></a></li>
       <li><a class="navlink" href="#why">Why We Build <span>↳</span></a></li>
       <li><a class="navlink" href="#advocacy">Advocacy <span>↳</span></a></li>
 
-      <!-- External links (real Habitat URLs) -->
       <li><a class="ext" href="http://www.habitat.org/how/about_us.aspx" target="_blank" rel="noopener">Learn more <span>↗</span></a></li>
       <li><a class="ext" href="http://www.habitat.org/getinv/volunteer_programs.aspx" target="_blank" rel="noopener">Volunteer <span>↗</span></a></li>
       <li><a class="ext" href="http://www.habitat.org/gov" target="_blank" rel="noopener">Advocate <span>↗</span></a></li>
@@ -317,12 +313,13 @@
       <div class="mediaRow">
         <button class="chip" id="pulseBtn" type="button">Pulse card</button>
         <button class="chip" id="colorBtn" type="button">Switch colors</button>
-        <button class="chip" id="imgBorderBtn" type="button">Image glow</button>
+        <button class="chip" id="imgGlowBtn" type="button">Image glow</button>
       </div>
 
+      <!-- FIXED: image no longer disappears completely; jQuery fades opacity so it can always "come back" -->
       <img class="missionImg" id="missionImg" src="media/menu_icon_default.jpg" width="212" height="121" alt="Silhouettes of Habitat for Humanity workers" />
       <p style="margin-top:8px;color:rgba(71,85,105,.92);font-size:12.5px;">
-        Tip: click the image to fade, double-click to reset.
+        Tip: click the image to dim/restore.
       </p>
     </article>
 
@@ -336,7 +333,7 @@
 
       <div class="mediaRow">
         <button class="chip" id="audioToggle" type="button">Toggle audio</button>
-        <button class="chip" id="audioColor" type="button">Audio highlight</button>
+        <button class="chip" id="audioHighlight" type="button">Audio highlight</button>
       </div>
 
       <div class="mediaBox" id="audioBox">
@@ -372,10 +369,6 @@
         <a href="http://www.habitat.org/youthprograms/ages_14_25/ages_14_25_default.aspx" target="_blank" rel="noopener">Start today</a>
         to become the leaders of Habitat tomorrow!
       </p>
-      <div class="mediaRow">
-        <button class="chip" id="asideTilt" type="button">Tilt effect</button>
-        <button class="chip" id="asideSwap" type="button">Swap style</button>
-      </div>
     </aside>
 
   </div>
@@ -392,14 +385,12 @@
   </p>
 </footer>
 
-<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
 $(document).ready(function(){
 
-  /* ========= 1) FIX LINKS + smooth scroll (more jQuery) ========= */
-  // Smooth-scroll ONLY for same-page anchor links (external links still work normally)
+  /* Smooth scroll for section links */
   $("a[href^='#']").on("click", function(e){
     const target = $(this).attr("href");
     if(target.length > 1 && $(target).length){
@@ -408,20 +399,17 @@ $(document).ready(function(){
     }
   });
 
-  /* ========= 2) Nav active state while scrolling ========= */
+  /* Active nav highlight */
   const sections = ["#mission", "#why", "#advocacy", "#youth"];
   function setActive(){
-    let best = null;
-    let bestDist = Infinity;
+    let best = null, bestDist = Infinity;
     const top = $(window).scrollTop() + 90;
-
     sections.forEach(function(id){
       if($(id).length){
         const dist = Math.abs($(id).offset().top - top);
         if(dist < bestDist){ bestDist = dist; best = id; }
       }
     });
-
     if(best){
       $(".navlink").removeClass("active");
       $(".navlink[href='"+best+"']").addClass("active");
@@ -430,58 +418,42 @@ $(document).ready(function(){
   setActive();
   $(window).on("scroll", setActive);
 
-  /* ========= 3) Click logo toggles nav + adds a quick style pop ========= */
+  /* Logo toggles nav */
   $("#logo").on("click", function(){
     $("nav").slideToggle(220);
-    // quick pop effect on header via jQuery CSS
-    $("header").css("box-shadow","0 12px 28px rgba(2,6,23,.12)");
-    setTimeout(function(){ $("header").css("box-shadow","none"); }, 350);
   });
 
-  /* ========= 4) Article title toggles paragraph + changes CSS (more jQuery) ========= */
+  /* Click article title toggles paragraph */
   $("article h1").on("click", function(){
-    const $card = $(this).closest("article");
     $(this).next("p").slideToggle(180);
-
-    $card.css({
-      "border-color":"rgba(34,197,94,.28)",
-      "box-shadow":"0 16px 30px rgba(34,197,94,.14)"
-    });
-
-    setTimeout(function(){
-      $card.css({
-        "border-color":"rgba(226,232,240,.95)",
-        "box-shadow":"0 10px 22px rgba(2,6,23,.10)"
-      });
-    }, 450);
   });
 
-  /* ========= 5) Mission image fade + reset + CSS glow ========= */
+  /* ===== FIX 1: Mission image always comes back =====
+     We dim/restore with fadeTo instead of hiding (so it can be clicked again). */
+  let dimmed = false;
   $("#missionImg").on("click", function(){
-    $(this).fadeToggle(220);
-  });
-  $("#missionImg").on("dblclick", function(){
-    $(this).stop(true,true).show().css({
-      "box-shadow":"none",
-      "transform":"scale(1)",
-      "border-color":"rgba(226,232,240,.95)"
-    });
+    dimmed = !dimmed;
+    if(dimmed){
+      $(this).stop(true,true).fadeTo(180, 0.18);
+    } else {
+      $(this).stop(true,true).fadeTo(180, 1);
+    }
   });
 
-  $("#imgBorderBtn").on("click", function(){
+  /* Image glow button */
+  $("#imgGlowBtn").on("click", function(){
     $("#missionImg").css({
       "box-shadow":"0 18px 36px rgba(34,197,94,.22)",
       "border-color":"rgba(34,197,94,.30)"
-    }).animate({ opacity: 0.95 }, 120).animate({ opacity: 1 }, 120);
+    }).animate({ opacity: 0.92 }, 120).animate({ opacity: 1 }, 120);
   });
 
-  /* ========= 6) Extra jQuery buttons (more interactivity) ========= */
+  /* Pulse card */
   $("#pulseBtn").on("click", function(){
-    const $m = $("#mission");
-    $m.animate({ paddingTop: "18px" }, 120)
-      .animate({ paddingTop: "14px" }, 120);
+    $("#mission").animate({ paddingTop: "18px" }, 120).animate({ paddingTop: "14px" }, 120);
   });
 
+  /* Switch colors */
   let altColors = false;
   $("#colorBtn").on("click", function(){
     altColors = !altColors;
@@ -491,131 +463,62 @@ $(document).ready(function(){
         "radial-gradient(900px 450px at 85% 10%, rgba(168,85,247,.12), transparent 60%),"+
         "linear-gradient(135deg, #eef2ff, #faf5ff)"
       );
-      $("article h1, aside h4, footer a").css("color", "#0f172a");
-      $(".navHead").css("background","linear-gradient(180deg, rgba(59,130,246,.14), transparent)");
     } else {
       $("body").removeAttr("style");
-      $("article h1, aside h4, footer a").removeAttr("style");
-      $(".navHead").removeAttr("style");
     }
   });
 
-  /* ========= 7) Toggle audio/video panels (assets) ========= */
+  /* Toggle audio panel */
   $("#audioToggle").on("click", function(){
     $("#audioBox").slideToggle(200);
   });
-  $("#audioColor").on("click", function(){
-    $("#audioBox").css({
-      "background":"linear-gradient(180deg, rgba(34,197,94,.12), rgba(255,255,255,.75))",
-      "border-color":"rgba(34,197,94,.25)"
+
+  /* ===== FIX 2: Audio highlight actually works =====
+     If audio box is hidden, we show it first, then apply CSS + pulse. */
+  $("#audioHighlight").on("click", function(){
+    $("#audioBox").stop(true,true).slideDown(160, function(){
+      $("#audioBox").css({
+        "background":"linear-gradient(180deg, rgba(34,197,94,.18), rgba(255,255,255,.75))",
+        "border-color":"rgba(34,197,94,.35)",
+        "box-shadow":"0 18px 36px rgba(34,197,94,.16)"
+      }).animate({ paddingLeft: "16px" }, 110).animate({ paddingLeft: "10px" }, 110);
     });
   });
 
+  /* Toggle video panel */
   $("#videoToggle").on("click", function(){
     $("#videoBox").slideToggle(200);
   });
 
+  /* ===== FIX 3: Wider video actually works =====
+     If video box is hidden, show it first; then expand video height + card styling. */
   let wide = false;
   $("#videoWide").on("click", function(){
     wide = !wide;
-    if(wide){
-      $("#videoBox").css({"padding":"12px"});
-      $("#vid").css({"border-radius":"14px"});
-      $("#advocacy").css({"border-color":"rgba(34,197,94,.30)"});
-    } else {
-      $("#videoBox, #vid, #advocacy").removeAttr("style");
-    }
+
+    $("#videoBox").stop(true,true).slideDown(160, function(){
+      if(wide){
+        $("#videoBox").css({
+          "border-color":"rgba(34,197,94,.35)",
+          "box-shadow":"0 18px 36px rgba(34,197,94,.14)"
+        });
+        $("#vid").css({
+          "border-radius":"14px",
+          "height":"440px"
+        });
+        $("#videoWide").text("Normal video");
+      } else {
+        $("#videoBox").removeAttr("style");
+        $("#vid").removeAttr("style");
+        $("#videoWide").text("Wider video");
+      }
+    });
   });
 
-  /* ========= 8) Aside hover CSS via jQuery ========= */
-  $("#youthImg").hover(
-    function(){
-      $(this).css({
-        "transform":"scale(1.03)",
-        "box-shadow":"0 18px 36px rgba(2,6,23,.18)",
-        "transition":"transform .18s ease"
-      });
-    },
-    function(){
-      $(this).css({
-        "transform":"scale(1)",
-        "box-shadow":"none"
-      });
-    }
-  );
-
-  let tilted = false;
-  $("#asideTilt").on("click", function(){
-    tilted = !tilted;
-    if(tilted){
-      $("#youthImg").css({"transform":"rotate(-1.5deg) scale(1.02)"});
-    } else {
-      $("#youthImg").css({"transform":"scale(1)"});
-    }
-  });
-
-  let asideAlt = false;
-  $("#asideSwap").on("click", function(){
-    asideAlt = !asideAlt;
-    if(asideAlt){
-      $("#youth").css({
-        "background":"linear-gradient(135deg, rgba(34,197,94,.10), rgba(255,255,255,.92))",
-        "border-color":"rgba(34,197,94,.25)"
-      });
-    } else {
-      $("#youth").removeAttr("style");
-    }
-  });
-
-  /* ========= 9) Theme button (jQuery does lots of CSS) ========= */
-  let theme = 0; // 0 default, 1 dark, 2 neon
-  $("#themeBtn").on("click", function(){
-    theme = (theme + 1) % 3;
-
-    if(theme === 1){
-      // Dark
-      $("body").css({
-        "background":"radial-gradient(900px 450px at 10% 0%, rgba(34,197,94,.12), transparent 60%),"+
-                     "radial-gradient(900px 450px at 90% 10%, rgba(46,125,50,.10), transparent 60%),"+
-                     "linear-gradient(135deg, #081018, #0b1220)",
-        "color":"#e5e7eb"
-      });
-      $("header, nav, article, aside, footer").css({
-        "background":"rgba(15,23,42,.78)",
-        "border-color":"rgba(255,255,255,.10)"
-      });
-      $("article p, aside p, footer p, nav a").css("color","rgba(229,231,235,.90)");
-      $("nav a span").css("color","rgba(229,231,235,.65)");
-      $("article h1, aside h4, footer a").css("color","#a7f3d0");
-      $("#themeBtn").text("Theme: Dark");
-    } else if(theme === 2){
-      // Neon-ish
-      $("body").css({
-        "background":"radial-gradient(900px 450px at 15% 0%, rgba(59,130,246,.18), transparent 60%),"+
-                     "radial-gradient(900px 450px at 90% 10%, rgba(168,85,247,.16), transparent 60%),"+
-                     "linear-gradient(135deg, #ecfeff, #fff7ed)"
-      });
-      $("header, nav, article, aside, footer").css({
-        "background":"rgba(255,255,255,.86)",
-        "border-color":"rgba(2,6,23,.10)"
-      });
-      $("article h1, aside h4, footer a").css("color","#111827");
-      $("#themeBtn").text("Theme: Pop");
-    } else {
-      // Reset to CSS defaults
-      $("body, header, nav, article, aside, footer, article p, aside p, footer p, nav a, nav a span, article h1, aside h4, footer a").removeAttr("style");
-      $("#themeBtn").text("Theme");
-    }
-
-    // little “saved” feedback
-    $("#savedPill").stop(true,true).fadeIn(120).delay(650).fadeOut(200);
-  });
-
-  /* ========= 10) Compact button removes “empty space” via jQuery ========= */
+  /* Compact button */
   let compact = false;
   $("#compactBtn").on("click", function(){
     compact = !compact;
-
     if(compact){
       $(".wrap").css({"gap":"8px"});
       $(".content").css({"gap":"8px"});
@@ -626,12 +529,22 @@ $(document).ready(function(){
       $(".wrap, .content, article, aside, .topbar").removeAttr("style");
       $("#compactBtn").text("Compact");
     }
-
-    $("#savedPill").stop(true,true).fadeIn(120).delay(650).fadeOut(200);
   });
 
-});
-</script>
-
-</body>
-</html>
+  /* Theme button (optional) */
+  let theme = 0;
+  $("#themeBtn").on("click", function(){
+    theme = (theme + 1) % 2;
+    if(theme === 1){
+      $("body").css({
+        "background":"linear-gradient(135deg, #081018, #0b1220)",
+        "color":"#e5e7eb"
+      });
+      $("header, nav, article, aside, footer").css({
+        "background":"rgba(15,23,42,.78)",
+        "border-color":"rgba(255,255,255,.10)"
+      });
+      $("article p, aside p, footer p, nav a").css("color","rgba(229,231,235,.90)");
+      $("nav a span").css("color","rgba(229,231,235,.65)");
+      $("article h1, aside h4, footer a").css("color","#a7f3d0");
+      $("#themeBtn").text("Theme
