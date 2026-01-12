@@ -1,55 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="Description" content="Sample Web site for learning HTML5 and CSS3"/>
 <link rel="shortcut icon" href="http://www.habitat.org/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon" />
-<title>Habitat for Humanity Int&#039;l</title>
+<title>Habitat for Humanity Int'l</title>
+
+<style>
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+    color:#222;
+  }
+
+  header{
+    background:white;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 2px 6px rgba(0,0,0,.1);
+  }
+
+  header img{
+    width:220px;
+    cursor:pointer;
+  }
+
+  nav{
+    background:#2e7d32;
+    color:white;
+    padding:20px;
+  }
+
+  nav h4{
+    margin-top:0;
+    letter-spacing:1px;
+  }
+
+  nav ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+
+  nav li{
+    margin:10px 0;
+  }
+
+  nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+  }
+
+  main{
+    max-width:1000px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+    gap:20px;
+    padding:0 20px;
+  }
+
+  article, aside{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(0,0,0,.08);
+  }
+
+  article h1{
+    cursor:pointer;
+    color:#2e7d32;
+  }
+
+  article img{
+    width:100%;
+    max-width:320px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+
+  aside img{
+    width:100%;
+    transition:.3s;
+    cursor:pointer;
+  }
+
+  footer{
+    background:#1b5e20;
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+    margin-top:40px;
+  }
+
+  footer a{
+    color:#c8e6c9;
+    text-decoration:none;
+    margin:0 6px;
+  }
+</style>
 </head>
+
 <body>
 
 <header>
-<img src="media/logo.png" alt="Habitat for Humanity logo" />
+  <img src="media/logo.png" alt="Habitat for Humanity logo" />
 </header>
 
 <nav>
-<h4>Simple, decent, affordable housing</h4><ul>
-<li><a href="http://www.habitat.org/how/about_us.aspx">Learn more</a></li>
-<li><a href="http://www.habitat.org/getinv/volunteer_programs.aspx">Volunteer</a></li>
-<li><a href="http://www.habitat.org/gov">Advocate</a></li>
-<li><a href="https://www.habitat.org/cd/giving/donate.aspx?r=r&amp;link=1">Donate</a></li>
-</ul>
-</nav> 
+  <h4>Simple, decent, affordable housing</h4>
+  <ul>
+    <li><a href="#">Learn more</a></li>
+    <li><a href="#">Volunteer</a></li>
+    <li><a href="#">Advocate</a></li>
+    <li><a href="#">Donate</a></li>
+  </ul>
+</nav>
 
-<article>
-<h1>Our Mission</h1>
-<p>Habitat for Humanity believes that every man, woman and child should have a decent, safe and affordable place to live. We build and repair houses all over the world using volunteer labor and donations. Our partner families purchase these houses through no-profit, no-interest mortgage loans or innovative financing methods.</p>
-<img src="media/menu_icon_default.jpg" width="212" height="121" alt="Silhouettes of Habitat for Humanity workers" />
-</article> 
+<main>
 
-<article>
-<h1>Why We Build</h1>
-<p>There are nearly 2 billion people around the world who live in slum housing and more than 100 million are homeless. Families left homeless by natural disasters, war and civil unrest often face dire housing situations as they struggle to rebuild their lives. We provide shelter and housing assistance to help these families recover.</p>
-</article>
+  <section>
+    <article>
+      <h1>Our Mission</h1>
+      <p>
+        Habitat for Humanity believes that every man, woman and child should have
+        a decent, safe and affordable place to live. We build and repair houses
+        using volunteer labor and donations.
+      </p>
+      <img src="media/menu_icon_default.jpg" alt="Habitat workers"/>
+    </article>
 
-<article>
-<h1>Advocacy in Action</h1>
-<p>Volunteer Amy Miles lends her voice in support of Habitat's advocacy efforts and Global Village trips. Use the audio controls below to hear her stories.</p> 
-</article>
+    <article>
+      <h1>Why We Build</h1>
+      <p>
+        Nearly 2 billion people worldwide live in poor housing conditions.
+        Habitat provides shelter and housing assistance to families recovering
+        from disaster, conflict, and poverty.
+      </p>
+    </article>
 
-<aside>
-<h4>Build Your Community</h4>
-<a href="http://www.habitat.org/youthprograms/ages_14_25/ages_14_25_default.aspx"><img src="media/YP3_14to25.jpg" alt="Habitat for Humanity logo"/></a>
-<p><a href="http://www.habitat.org/youthprograms/ages_14_25/ages_14_25_default.aspx">Start today</a> to become the leaders of Habitat tomorrow! </p> 
-</aside> 
+    <article>
+      <h1>Advocacy in Action</h1>
+      <p>
+        Volunteer Amy Miles lends her voice in support of Habitat's advocacy
+        efforts and Global Village trips.
+      </p>
+    </article>
+  </section>
+
+  <aside>
+    <h4>Build Your Community</h4>
+    <img src="media/YP3_14to25.jpg" alt="Youth Program"/>
+    <p>
+      <a href="#">Start today</a> to become the leaders of Habitat tomorrow.
+    </p>
+  </aside>
+
+</main>
 
 <footer>
-<a href="http://www.habitat.org/how/"> Learn About Habitat</a> | 
-<a href="http://www.habitat.org/intl/">Where We Build</a> | 
-<a href="http://www.habitat.org/support/default.aspx">Support Habitat</a> | 
-<a href="http://www.habitat.org/stories_multimedia/">Stories and Multimedia</a><br/><br/> 
-<p>&#169;2014 Habitat for Humanity&#174; International. All rights reserved. "Habitat for Humanity&#174;" is a registered service mark owned by Habitat for Humanity International. Habitat&#174; is a service mark of Habitat for Humanity International.</p>
+  <a href="#">Learn About Habitat</a> |
+  <a href="#">Where We Build</a> |
+  <a href="#">Support Habitat</a> |
+  <a href="#">Stories and Multimedia</a>
+  <p>
+    ©2014 Habitat for Humanity® International. All rights reserved.
+  </p>
 </footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  // Toggle nav when logo clicked (CSS + animation)
+  $("header img").click(function(){
+    $("nav").slideToggle("slow");
+  });
+
+  // Click article headings to hide/show text
+  $("article h1").click(function(){
+    $(this).next("p").slideToggle("fast");
+    $(this).css("color", "#1b5e20");
+  });
+
+  // Fade mission image
+  $("article img").click(function(){
+    $(this).fadeToggle(400);
+  });
+
+  // Hover aside image using jQuery CSS
+  $("aside img").hover(
+    function(){
+      $(this).css({
+        "transform":"scale(1.05)",
+        "box-shadow":"0 10px 20px rgba(0,0,0,.2)"
+      });
+    },
+    function(){
+      $(this).css({
+        "transform":"scale(1)",
+        "box-shadow":"none"
+      });
+    }
+  );
+
+  // Footer link interaction
+  $("footer a").click(function(){
+    $(this).css("color", "#ffffff");
+  });
+
+});
+</script>
 
 </body>
 </html>
